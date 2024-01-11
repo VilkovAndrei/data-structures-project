@@ -18,6 +18,22 @@ class Stack:
         """Конструктор класса Stack"""
         self.top = None
 
+    def __str__(self):
+        result_list = []
+        if self.top == None:
+            return ""
+        else:
+            result_list.append(self.top.data)
+            current_node = self.top.next_node
+            while current_node != None:
+                result_list.append(current_node.data)
+                current_node = current_node.next_node
+
+            result = "\n".join(result_list)
+            return result
+
+
+
     def push(self, data):
         """
         Метод для добавления элемента на вершину стека

@@ -2,6 +2,10 @@ from src.stack import Node, Stack
 
 if __name__ == '__main__':
     stack = Stack()
+
+    # Магический метод __str__ возвращает пустую строку
+    assert str(stack) == ""
+
     stack.push('data1')
     data = stack.pop()
 
@@ -14,6 +18,9 @@ if __name__ == '__main__':
     stack = Stack()
     stack.push('data1')
     stack.push('data2')
+
+    assert str(stack) == "data2\ndata1"
+
     data = stack.pop()
 
     # теперь последний элемента содержит данные data1
