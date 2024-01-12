@@ -34,6 +34,7 @@ class Queue:
         else:
             self.tail.next_node = new_node
             self.tail = new_node
+            self.tail.next_node = None
             self.all.append(data)
 
     def dequeue(self):
@@ -63,13 +64,15 @@ class Queue:
                 raise ValueError(f'Число должно быть меньше {len(self.all)}')
             elif deleted_index < 0:
                 raise ValueError('Число должно быть неотрицательным')
-
             deleted_node = self.head
             forward_node = None
             for index in range(0, deleted_index):
                 forward_node = deleted_node
                 deleted_node = deleted_node.next_node
-            if not forward_node:
+            if deleted_node == self.tail:
+                self.tail = forward_node
+                self.tail.next_node = None
+            if forward_node:
                 forward_node.next_node = deleted_node.next_node
             del self.all[deleted_index]
 
@@ -87,6 +90,6 @@ class Queue:
             while current_node:
                 result_list.append(current_node.data)
                 current_node = current_node.next_node
-
+            # result_list.append(self.tail.data)
             result = "\n".join(result_list)
             return result
