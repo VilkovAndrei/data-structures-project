@@ -16,4 +16,6 @@ class TestQueue(unittest.TestCase):
         self.assertEqual(queue1.head.next_node.next_node.data, 'data3')
         self.assertEqual(queue1.dequeue(), 'data1')
         self.assertEqual(queue1.del_node_queue(1), 'data3')
-
+        self.assertEqual(str(queue1), 'data2\ndata4')
+        self.assertEqual(queue1.del_node_queue(1), 'data4')
+        self.assertEqual(str(queue1), 'data2')
