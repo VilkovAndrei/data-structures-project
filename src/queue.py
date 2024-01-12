@@ -18,6 +18,7 @@ class Queue:
         """Конструктор класса Queue"""
         self.all = []
         self.head = None
+        self.tail = None
 
     def enqueue(self, data):
         """
@@ -46,18 +47,44 @@ class Queue:
         else:
             popped_node = self.head
             self.head = self.head.next_node
+            del self.all[0]
             return popped_node.data
+
+    def del_node_queue(self, deleted_index=0):
+        """
+        Метод для удаления элемента из очереди по индексу. Возвращает данные удаленного элемента
+
+        :return: данные удаленного элемента
+        """
+        if self.head is None:
+            return None
+        else:
+            if deleted_index >= len(self.all):
+                raise ValueError(f'Число должно быть меньше {len(self.all)}')
+            elif deleted_index < 0:
+                raise ValueError('Число должно быть неотрицательным')
+
+            deleted_node = self.head
+            forward_node = None
+            for index in range(0, deleted_index):
+                forward_node = deleted_node
+                deleted_node = deleted_node.next_node
+            if not forward_node:
+                forward_node.next_node = deleted_node.next_node
+            del self.all[deleted_index]
+
+            return deleted_node.data
 
     def __str__(self):
         """Магический метод для строкового представления объекта"""
 
         result_list = []
-        if self.head == None:
+        if not self.head:
             return ""
         else:
             result_list.append(self.head.data)
             current_node = self.head.next_node
-            while current_node != None:
+            while current_node:
                 result_list.append(current_node.data)
                 current_node = current_node.next_node
 
