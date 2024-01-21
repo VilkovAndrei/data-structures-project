@@ -20,6 +20,26 @@ class Queue:
         self.head = None
         self.tail = None
 
+    def __iter__(self):
+        """Возвращает итератор."""
+        self.current_value = self.head
+        return self
+
+    def __next__(self):
+        """Возвращает следующий элемент.
+
+        Returns:
+            int: Следующее четное число.
+
+        Raises:
+            StopIteration: Если достигнут последний элеммент.
+        """
+        if not self.current_value.next_node:
+            self.current_value = self.current_value.next_node
+            return self.current_value
+        else:
+            raise StopIteration
+
     def enqueue(self, data):
         """
         Метод для добавления элемента в очередь
@@ -49,6 +69,7 @@ class Queue:
             popped_node = self.head
             self.head = self.head.next_node
             del self.all[0]
+
             return popped_node.data
 
     def del_node_queue(self, deleted_index=0):
@@ -90,6 +111,5 @@ class Queue:
             while current_node:
                 result_list.append(current_node.data)
                 current_node = current_node.next_node
-            # result_list.append(self.tail.data)
             result = "\n".join(result_list)
             return result
