@@ -20,19 +20,17 @@ class Stack:
 
     def __str__(self):
         result_list = []
-        if self.top == None:
+        if self.top is None:
             return ""
         else:
             result_list.append(self.top.data)
             current_node = self.top.next_node
-            while current_node != None:
+            while current_node is not None:
                 result_list.append(current_node.data)
                 current_node = current_node.next_node
 
             result = "\n".join(result_list)
             return result
-
-
 
     def push(self, data):
         """

@@ -19,7 +19,9 @@ class LinkedList:
         self.tail = None
 
     def insert_beginning(self, data: dict) -> None:
-        """Принимает данные (словарь) и добавляет узел с этими данными в начало связанного списка"""
+        """Принимает данные (словарь) и добавляет узел с этими данными
+         в начало связанного списка
+        """
         new_node = Node(data, None)
         if self.head is None:
             self.head = new_node
@@ -29,7 +31,8 @@ class LinkedList:
             self.head = new_node
 
     def insert_at_end(self, data: dict) -> None:
-        """Принимает данные (словарь) и добавляет узел с этими данными в конец связанного списка"""
+        """Принимает данные (словарь) и добавляет узел с этими данными
+        в конец связанного списка"""
         new_node = Node(data, None)
         if self.head is None:
             self.head = new_node
